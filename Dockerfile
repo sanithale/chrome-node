@@ -33,7 +33,7 @@ ADD wrap_chrome_binary /opt/bin/wrap_chrome_binary
 RUN chmod +x /opt/bin/wrap_chrome_binary
 RUN /opt/bin/wrap_chrome_binary
 
-USER seluser
+# USER seluser
 
 #============================================
 # Chrome webdriver
@@ -53,7 +53,7 @@ RUN CD_VERSION=$(if [ ${CHROME_DRIVER_VERSION:-latest} = "latest" ]; then echo $
   && sudo ln -fs /opt/selenium/chromedriver-$CD_VERSION /usr/bin/chromedriver
 
 ADD generate_config /opt/bin/generate_config
-#RUN chmod +x /opt/bin/generate_config
+RUN sudo chmod +x /opt/bin/generate_config
 
 # Generating a default config during build time
 RUN /opt/bin/generate_config > /opt/selenium/config.json
